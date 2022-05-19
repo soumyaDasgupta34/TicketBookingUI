@@ -1,24 +1,41 @@
-import React from "react";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useAppSelector, useAppDispatch } from "../redux/hooks";
-import { getBus } from "../redux/busSlice";
-import Spinner from "./Spinner";
+import { getBusComplete } from "../redux/busSlice";
 import Bus from "./Bus";
 import SearchBus from "./SearchBus";
+import { Grid } from "@mui/material";
+import { Container } from "@mui/material";
 
 const Home = () => {
   const dispatch = useAppDispatch();
-  const { busList, isLoading } = useAppSelector((state) => state.bus);
+
+  const { busList, isLoading, completeList } = useAppSelector(
+    (state) => state.bus
+  );
   useEffect(() => {
-    dispatch(getBus(undefined, undefined));
+    dispatch(getBusComplete(undefined, undefined));
   }, [dispatch]);
   return (
-    <div>
-      <SearchBus busList={busList} />
-      {!isLoading &&
-        busList &&
-        busList.map((bus) => <Bus key={bus._id} data={bus} />)}
-    </div>
+    <>
+      <SearchBus busList={completeList} />
+      <Container>
+        <Grid xs={6} alignContent={"center"}>
+          <Grid xs={7}>
+            {!isLoading &&
+              busList &&
+              busList.map((bus) => (
+                <>
+                  <Grid item>
+                    <Bus key={bus._id} data={bus} />
+                  </Grid>
+                  <br />
+                  <br />
+                </>
+              ))}
+          </Grid>
+        </Grid>
+      </Container>
+    </>
   );
 };
 

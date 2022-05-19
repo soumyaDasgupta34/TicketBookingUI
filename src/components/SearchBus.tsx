@@ -21,49 +21,47 @@ const SearchBus = (props: any) => {
     dispatch(getBus(source, destination));
   };
   return (
-    <div>
-      <Grid container spacing={2}>
-        <Grid item xs={8}>
-          <Autocomplete
-            freeSolo
-            disableClearable
-            onChange={onSourceChangeHandler}
-            options={props.busList.map((bus: any) => bus.source)}
-            renderInput={(params) => (
-              <TextField
-                {...params}
-                label="Source"
-                InputProps={{
-                  ...params.InputProps,
-                  type: "search",
-                }}
-              />
-            )}
-          />
-        </Grid>
+    <Grid container spacing={2}>
+      <Grid item xs={8}>
+        <Autocomplete
+          freeSolo
+          disableClearable
+          onChange={onSourceChangeHandler}
+          options={props.busList.map((bus: any) => bus.source)}
+          renderInput={(params) => (
+            <TextField
+              {...params}
+              label="Source"
+              InputProps={{
+                ...params.InputProps,
+                type: "search",
+              }}
+            />
+          )}
+        />
+      </Grid>
+      <Grid item xs={4}>
+        <Autocomplete
+          freeSolo
+          disableClearable
+          onChange={onDestinationChangeHandler}
+          options={props.busList.map((bus: any) => bus.destination)}
+          renderInput={(params) => (
+            <TextField
+              {...params}
+              label="Destination"
+              InputProps={{
+                ...params.InputProps,
+                type: "search",
+              }}
+            />
+          )}
+        />
         <Grid item xs={4}>
-          <Autocomplete
-            freeSolo
-            disableClearable
-            onChange={onDestinationChangeHandler}
-            options={props.busList.map((bus: any) => bus.destination)}
-            renderInput={(params) => (
-              <TextField
-                {...params}
-                label="Destination"
-                InputProps={{
-                  ...params.InputProps,
-                  type: "search",
-                }}
-              />
-            )}
-          />
-          <Grid item xs={4}>
-            <Button onClick={onSearchHandler}>Search</Button>
-          </Grid>
+          <Button onClick={onSearchHandler}>Search</Button>
         </Grid>
       </Grid>
-    </div>
+    </Grid>
   );
 };
 

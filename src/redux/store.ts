@@ -1,9 +1,11 @@
 import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
 import busReducer from "./busSlice";
+import authReducer from "./authSlice";
 
 export const store = configureStore({
   reducer: {
     bus: busReducer,
+    auth: authReducer,
   },
 });
 

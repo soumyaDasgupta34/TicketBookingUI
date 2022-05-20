@@ -80,17 +80,12 @@ const BookTickets = () => {
     selectedSeats: Array<number>,
     setSelectedSeats: any
   ] = useState([]);
-  console.log(seletctedSeats);
   const onSeatSelect = (seatNumber: number) => {
-    console.log("Selected seats", seletctedSeats);
-    console.log("Seat number", seatNumber);
     if (seletctedSeats.includes(seatNumber)) {
-      console.log("Inside if");
       setSelectedSeats((prevState: any) =>
         prevState.filter((seat: number) => seat !== seatNumber)
       );
     } else {
-      console.log("Inside else");
       setSelectedSeats([...seletctedSeats, seatNumber]);
     }
   };

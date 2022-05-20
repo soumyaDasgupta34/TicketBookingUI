@@ -4,11 +4,13 @@ import { logInApi, signUpApi } from "../api/apiCalls";
 export interface AuthState {
   isAuthenticated: boolean;
   incorrectLogin: boolean;
+  isLoading: boolean;
 }
 
 const initialState: AuthState = {
   isAuthenticated: false,
   incorrectLogin: false,
+  isLoading: true,
 };
 
 const authSlice = createSlice({
@@ -17,6 +19,7 @@ const authSlice = createSlice({
   reducers: {
     loginAction: (state) => {
       state.isAuthenticated = true;
+      state.isLoading = false;
     },
     incorrectLogInAction: (state) => {
       state.incorrectLogin = true;

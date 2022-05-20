@@ -13,8 +13,10 @@ import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import DirectionsBusIcon from "@mui/icons-material/DirectionsBus";
 import { useNavigate } from "react-router-dom";
+import "../App.css";
+import { fontSize } from "@mui/system";
 
-const NavBar = () => {
+const NavBar = (props: any) => {
   const token = localStorage.getItem("token");
   const navigate = useNavigate();
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
@@ -51,15 +53,19 @@ const NavBar = () => {
     navigate("/login");
   };
   return (
-    <Box sx={{ flexGrow: 1 }}>
+    <Box sx={{ flexGrow: 1 }} style={{ marginBottom: "15px" }}>
       <AppBar
         position="static"
-        sx={{ bgcolor: "rgba(159, 197, 227,0.6)", color: "black" }}
+        sx={{ bgcolor: "rgb(78, 3, 163)", color: "black" }}
       >
         <Container maxWidth="xl">
           <Toolbar disableGutters>
             <DirectionsBusIcon
-              sx={{ display: { xs: "none", md: "flex" }, mr: 1 }}
+              sx={{
+                display: { xs: "none", md: "flex" },
+                color: "white",
+                mr: 1,
+              }}
             />
             <Typography
               variant="h6"
@@ -72,14 +78,21 @@ const NavBar = () => {
                 fontFamily: "monospace",
                 fontWeight: 700,
                 letterSpacing: ".3rem",
-                color: "inherit",
+                color: "white",
                 textDecoration: "none",
               }}
             >
               BlueBus
             </Typography>
 
-            <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
+            <Box
+              sx={{
+                flexGrow: 1,
+                display: { xs: "flex", md: "none" },
+                justifyContent: "end",
+              }}
+              className="navbar"
+            >
               <IconButton
                 size="large"
                 aria-label="account of current user"
@@ -109,8 +122,17 @@ const NavBar = () => {
                 }}
               >
                 <MenuItem onClick={handleMyBookingsClick}>
-                  {token && (
-                    <Typography textAlign="center">My Bookings</Typography>
+                  {props.authentication && (
+                    <Typography
+                      textAlign="center"
+                      textTransform="none"
+                      style={{
+                        textTransform: "none",
+                        fontSize: "15px",
+                      }}
+                    >
+                      My Bookings
+                    </Typography>
                   )}
                 </MenuItem>
               </Menu>
@@ -136,11 +158,23 @@ const NavBar = () => {
             >
               BlueBus
             </Typography>
-            <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+            <Box
+              sx={{
+                flexGrow: 1,
+                display: { xs: "none", md: "flex" },
+                justifyContent: "end",
+              }}
+            >
               {token && (
                 <Button
                   onClick={handleMyBookingsClick}
-                  sx={{ my: 2, color: "white", display: "block" }}
+                  sx={{
+                    my: 2,
+                    color: "white",
+                    display: "block",
+                    textTransform: "none",
+                    fontSize: "18px",
+                  }}
                 >
                   My Bookings
                 </Button>
@@ -149,8 +183,11 @@ const NavBar = () => {
 
             <Box sx={{ flexGrow: 0 }}>
               <Tooltip title="Open settings">
-                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                  <AccountCircleIcon />
+                <IconButton
+                  onClick={handleOpenUserMenu}
+                  sx={{ p: 0, fontSize: "100px", paddingLeft: "16px" }}
+                >
+                  <AccountCircleIcon sx={{ fontSize: 36, color: "white" }} />
                 </IconButton>
               </Tooltip>
               <Menu

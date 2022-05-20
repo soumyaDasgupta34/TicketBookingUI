@@ -1,0 +1,11 @@
+body {
+  margin: 0;
+}
+
+.navbar {
+  justify-content: "end";
+}
+
+.textTransform {
+  text-transform: "none";
+}

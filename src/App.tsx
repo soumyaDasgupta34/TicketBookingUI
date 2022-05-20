@@ -6,13 +6,16 @@ import BookTickets from "./components/BookTickets";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
 import Logout from "./components/Logout";
+import { useAppSelector } from "./redux/hooks";
 import ProtectedRoute from "./auth/ProtectedRoute";
+import "./App.css";
 
 function App() {
   const token = localStorage.getItem("token");
+  const { isAuthenticated } = useAppSelector((state) => state.auth);
   return (
     <BrowserRouter>
-      <NavBar />
+      <NavBar authentication={isAuthenticated} />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route

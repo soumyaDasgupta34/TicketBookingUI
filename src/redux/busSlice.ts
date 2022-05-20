@@ -5,6 +5,7 @@ import {
   cancelSeatApi,
   getAvailableSeatsApi,
   bookTicketApi,
+  getBusByIdApi,
 } from "../api/apiCalls";
 
 export interface BusState {
@@ -13,6 +14,7 @@ export interface BusState {
   completeList: Array<any>;
   bookingsList: Array<any>;
   availableSeats: Array<any>;
+  busDetails: Object;
 }
 
 const initialState: BusState = {
@@ -20,6 +22,7 @@ const initialState: BusState = {
   completeList: [],
   bookingsList: [],
   isLoading: true,
+  busDetails: {},
   availableSeats: [],
 };
 
@@ -41,6 +44,9 @@ const busSlice = createSlice({
     },
     getAvailableSeatsAction: (state, action) => {
       state.availableSeats = action.payload;
+    },
+    getBusByIdAction: (state, action) => {
+      state.busDetails = action.payload;
     },
   },
 });
@@ -85,9 +91,18 @@ export const getAvailableSeats = (busId: string) => {
 
 export const bookTicket = (bookingDetails: Array<any>, busId: string) => {
   return async (dispatch: any) => {
-    await bookTicketApi(bookingDetails, busId);
+    const details: any = { bookingDetails };
+    await bookTicketApi(details, busId);
     const response = await getBookingsApi();
     dispatch(getBookingsAction(response.data));
+  };
+};
+
+export const getBusById = (busId: string) => {
+  return async (dispatch: any) => {
+    const response = await getBusByIdApi(busId);
+    const responseJson = await response.json();
+    dispatch(getBusByIdAction(responseJson.data));
   };
 };
 
@@ -97,5 +112,6 @@ export const {
   getBusCompleteAction,
   getBookingsAction,
   getAvailableSeatsAction,
+  getBusByIdAction,
 } = actions;
 export default reducer;

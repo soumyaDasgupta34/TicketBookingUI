@@ -140,3 +140,19 @@ export const bookTicketApi = async (
   const responseJson = await response.json();
   return responseJson;
 };
+
+export const getBusByIdApi = async (busId: string) => {
+  const response = await fetch(
+    `http://localhost:8000/api/v1/bus/getBusById/${busId}`,
+    {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+        Accept: "application/json",
+      },
+    }
+  );
+  const responseJson = await response.json();
+  return responseJson;
+};

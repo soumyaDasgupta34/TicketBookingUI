@@ -185,54 +185,59 @@ const BookTickets = (props: any) => {
   return (
     <>
       {/* <Bus data={busDetails} /> */}
-      <Grid xs={12} className="container" padding={"20px"}>
-        <Grid item>
-          <ol className="cabin fuselage">{seats.map((seat) => seat)}</ol>
-        </Grid>
-        <Grid item>
-          <Fab
-            variant="extended"
-            color="primary"
-            size="small"
-            onClick={handleBookTicket}
-          >
-            <DirectionsBusIcon />
-            Book Ticket
-          </Fab>
-        </Grid>
-        <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
-          <Alert
-            onClose={handleClose}
-            severity="success"
-            sx={{ width: "100%" }}
-          >
-            Booking Successful. Redirecting you to booking page in 5 sec
-          </Alert>
-        </Snackbar>
-        <Dialog open={openDialog} onClose={handleCloseDialog}>
-          <DialogContent sx={{ width: "500px" }}>
-            <Box sx={{ mt: 1 }}>{renderPassengerInput()}</Box>
-          </DialogContent>
-          <DialogActions>
-            <Button
-              variant="contained"
-              color="primary"
-              onClick={onFormSubmitHandler}
-              sx={{
-                bgcolor: "rgb(78, 3, 163)",
-                ":hover": {
-                  bgcolor: "white",
-                  color: "rgb(78, 3, 163)",
-                },
-                margin: "0 20px 20px 20px",
-                padding: "8px 24px ",
-              }}
-            >
-              Book
-            </Button>
-          </DialogActions>
-        </Dialog>
-      </Grid>
+      {/* <Grid xs={12} className="container" padding={"20px"}> */}
+      <div className="book__select-container">
+        <div className="book__select">
+          <div className="book__banner">
+            <h2>Click on an Available seat to proceed with your transaction</h2>
+          </div>
+          <ol className="cabin fuselage" style={{ padding: 0 }}>
+            {seats.map((seat) => seat)}
+          </ol>
+        </div>
+        <div className="book__legende-container">
+          <div className="book_select-content">
+            <h2>Seat Legend</h2>
+          </div>
+          <div className="book__legend">
+            <div className="book__available">
+              <div className="available__box"></div>
+              <div className="available__text">
+                <h2>Avaiable</h2>
+              </div>
+            </div>
+            <div className="book__available">
+              <div className="unavailable__box">
+                <h2>X</h2>
+              </div>
+              <div className="available__text">
+                <h2>Unavailable</h2>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="book__ticket-btn">
+        <button onClick={handleBookTicket} className="btn-style-book">
+          Book Ticket
+        </button>
+      </div>
+      <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+        <Alert onClose={handleClose} severity="success" sx={{ width: "100%" }}>
+          Booking Successful. Redirecting you to booking page in 5 sec
+        </Alert>
+      </Snackbar>
+      <Dialog open={openDialog} onClose={handleCloseDialog}>
+        <DialogContent sx={{ width: "500px" }}>
+          <Box sx={{ mt: 1 }}>{renderPassengerInput()}</Box>
+        </DialogContent>
+        <DialogActions>
+          <button onClick={onFormSubmitHandler} className="btn-style-book">
+            Book
+          </button>
+        </DialogActions>
+      </Dialog>
+      {/* </Grid> */}
     </>
   );
 };

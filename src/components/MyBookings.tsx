@@ -2,6 +2,7 @@ import { useAppSelector, useAppDispatch } from "../redux/hooks";
 import { getBookings } from "../redux/busSlice";
 import { useEffect } from "react";
 import Bookings from "./Bookings";
+import { Grid } from "@mui/material";
 
 const MyBookings = () => {
   const dispatch = useAppDispatch();
@@ -13,7 +14,9 @@ const MyBookings = () => {
     <div>
       {bookingsList &&
         bookingsList.map((bookings) => (
-          <Bookings key={bookings.seatId} data={bookings} />
+          <Grid margin={"20px 0"}>
+            <Bookings key={bookings.seatId} data={bookings} />
+          </Grid>
         ))}
     </div>
   );

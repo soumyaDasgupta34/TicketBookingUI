@@ -9,13 +9,17 @@ import Logout from "./components/Logout";
 import { useAppSelector } from "./redux/hooks";
 import ProtectedRoute from "./auth/ProtectedRoute";
 import "./App.css";
+import AppBar from "./components/AppBar";
+import ShowBus from "./components/ShowBus";
 
 function App() {
   const token = localStorage.getItem("token");
   const { isAuthenticated } = useAppSelector((state) => state.auth);
+  console.log("Token inside app", isAuthenticated);
   return (
     <BrowserRouter>
-      <NavBar authentication={isAuthenticated} />
+      {/* <NavBar authentication={isAuthenticated} /> */}
+      <AppBar authentication={isAuthenticated} />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route
@@ -37,9 +41,9 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/logout" element={<Logout />} />
+        <Route path="/showBus" element={<ShowBus />} />
       </Routes>
     </BrowserRouter>
   );
 }
-
 export default App;

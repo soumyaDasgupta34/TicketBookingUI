@@ -19,9 +19,9 @@ const Bookings = (props: any) => {
           margin: "auto",
           maxWidth: 500,
           flexGrow: 1,
-          backgroundColor: (theme) =>
-            theme.palette.mode === "dark" ? "#1A2027" : "#fff",
+          backgroundColor: "#f8f4f4",
         }}
+        style={{ backgroundColor: "f8f4f4" }}
       >
         <Grid container spacing={2}>
           <Grid item xs={12} sm container>
@@ -41,14 +41,12 @@ const Bookings = (props: any) => {
                 </Typography>
               </Grid>
               <Grid item>
-                <Fab
-                  variant="extended"
-                  size="small"
+                <button
                   onClick={onCancelBookingHandler}
+                  className="btn-style-book"
                 >
-                  <DeleteOutlineIcon />
-                  <Typography variant="subtitle2">Cancel Booking</Typography>
-                </Fab>
+                  Cancel Booking
+                </button>
               </Grid>
             </Grid>
             <Grid item>

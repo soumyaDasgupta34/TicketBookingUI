@@ -129,6 +129,7 @@ const NavBar = (props: any) => {
                       style={{
                         textTransform: "none",
                         fontSize: "15px",
+                        color: "white",
                       }}
                     >
                       My Bookings

@@ -25,6 +25,7 @@ const authSlice = createSlice({
       state.incorrectLogin = true;
     },
     logoutAction: (state) => {
+      console.log("Inside log out action");
       state.isAuthenticated = false;
       state.incorrectLogin = false;
       localStorage.removeItem("token");

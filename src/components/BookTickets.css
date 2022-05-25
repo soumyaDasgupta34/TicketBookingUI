@@ -37,6 +37,7 @@ html {
   border-right: 5px solid #d8d8d8;
   border-left: 5px solid #d8d8d8;
   width: 350px;
+  margin: 0 auto;
 }
 
 .container {
@@ -107,7 +108,7 @@ ol {
   font-weight: bold;
   line-height: 1.5rem;
   padding: 4px 0;
-  background: rgba(159, 197, 227, 0.6);
+  background: #d84e55;
   border-radius: 5px;
   animation-duration: 300ms;
   animation-fill-mode: both;
@@ -195,4 +196,107 @@ ol {
 
 input[type="number"] {
   width: 60px !important;
+}
+
+.book__select-container {
+  display: flex;
+  justify-content: flex-start;
+  flex-grow: 1;
+  background: #eeeded;
+}
+.book__select {
+  width: 50%;
+}
+.booke__select-content {
+  display: flex;
+  flex-grow: 1;
+  justify-content: center;
+}
+
+.book_select-content h2 {
+  text-transform: uppercase;
+  font-size: 15px;
+  font-weight: 700;
+  color: #4a4a4a;
+}
+
+.book__legend {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.book__legende-container {
+  display: flex;
+  flex-direction: column;
+  /* justify-content: space-evenly; */
+  padding: 3.5rem;
+}
+
+.available__box {
+  border: 1px solid #a7a9ac;
+  height: 17px;
+  background-color: #d84e55;
+  margin-right: 10px;
+  width: 20px;
+}
+
+.book__available {
+  display: flex;
+  align-items: center;
+}
+
+.book__available h2 {
+  font-weight: 300;
+  font-size: 14px;
+}
+
+.available__text {
+  padding-top: 5px;
+}
+
+.book__ticket-btn {
+  display: flex;
+  justify-content: flex-end;
+  background: #eeeded;
+}
+
+.unavailable__box {
+  border: 1px solid #a7a9ac;
+  height: 17px;
+  background: #f6f3f3;
+  margin-right: 10px;
+  width: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.unavailable__box h2 {
+  font-size: 12px;
+  font-weight: bold;
+  padding-top: 8px;
+}
+
+@media only screen and (max-width: 720px) {
+  .fuselage {
+    padding: 0px;
+    width: auto;
+    border: none;
+  }
+  .book__legende-container {
+    padding: 3rem 4rem;
+  }
+  .available__box {
+    margin: 0;
+    width: 1rem;
+  }
+  .book__legend {
+    flex-direction: column;
+  }
+  .unavailable__box {
+    margin: 0;
+    width: 1rem;
+    margin-left: 1rem;
+  }
 }

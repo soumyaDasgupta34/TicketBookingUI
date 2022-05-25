@@ -6,14 +6,13 @@ import { Button, Typography } from "@mui/material";
 import { useAppDispatch } from "../redux/hooks";
 import { useState } from "react";
 import { getBus } from "../redux/busSlice";
-import { Container } from "@mui/material";
-import SearchIcon from "@mui/icons-material/Search";
-import IconButton from "@mui/material/IconButton";
+import { useNavigate } from "react-router-dom";
 
 const SearchBus = (props: any) => {
   const dispatch = useAppDispatch();
   const [source, setSource] = useState("");
   const [destination, setDestination] = useState("");
+  const navigate = useNavigate();
   const onSourceChangeHandler = (event: any, value: any) => {
     setSource(value);
   };
@@ -22,64 +21,73 @@ const SearchBus = (props: any) => {
   };
   const onSearchHandler = () => {
     dispatch(getBus(source, destination));
+    navigate("/showBus");
+  };
+  const style = {
+    "& .MuiOutlinedInput-root": {
+      borderRadius: 0,
+      "&.Mui-focused fieldset": {
+        borderColor: "white",
+      },
+      "&.MuiOutlinedInput-notchedOutline:hover": {
+        border: "none",
+      },
+    },
   };
   return (
-    <Container style={{ marginTop: "16px", marginBottom: "32px" }}>
-      <Grid container spacing={2}>
-        <Grid item xs={5}>
+    <>
+      <div className="home">
+        <div className="home__item">
           <Autocomplete
             freeSolo
             disableClearable
             onChange={onSourceChangeHandler}
-            options={props.busList.map((bus: any) => bus.source)}
+            style={{ background: "white" }}
+            options={Array.from(
+              new Set(props.busList.map((bus: any) => bus.source))
+            )}
             renderInput={(params) => (
               <TextField
                 {...params}
-                label="Source"
+                placeholder="Source"
                 InputProps={{
                   ...params.InputProps,
                   type: "search",
                 }}
+                sx={style}
               />
             )}
           />
-        </Grid>
-        <Grid item xs={5}>
+        </div>
+        <div className="home__item">
           <Autocomplete
             freeSolo
             disableClearable
             onChange={onDestinationChangeHandler}
-            options={props.busList.map((bus: any) => bus.destination)}
+            style={{ background: "white", border: 0 }}
+            options={Array.from(
+              new Set(props.busList.map((bus: any) => bus.destination))
+            )}
             renderInput={(params) => (
               <TextField
                 {...params}
-                label="Destination"
+                placeholder="Destination"
                 InputProps={{
                   ...params.InputProps,
                   type: "search",
                 }}
+                sx={style}
               />
             )}
           />
-        </Grid>
-        <Grid item xs={2}>
-          <IconButton
-            onClick={onSearchHandler}
-            style={{
-              display: "flex",
-              borderRadius: "5px",
-              width: "100%",
-              marginTop: "10px",
-              // border: 1px solid blue;
-              // color: blue;
-            }}
-          >
-            <SearchIcon />
-            <Typography>Search</Typography>
-          </IconButton>
-        </Grid>
-      </Grid>
-    </Container>
+        </div>
+        <div className="home__search-container">
+          <button onClick={onSearchHandler} className="home__search-btn">
+            <h2>Search</h2>
+          </button>
+        </div>
+      </div>
+    </>
   );
 };
 
